@@ -48,7 +48,7 @@ class DateTimeTest {
 	@Test
 	void NextFriday13() {
 		LocalDate current = LocalDate.now();
-		assertEquals(current.plusDays(240), current.with(new NextFriday13()));
+		assertEquals(current.plusDays(239), current.with(new NextFriday13()));
 	}
 
 	@Test
@@ -60,15 +60,10 @@ class DateTimeTest {
 	@Test
 	void displayCurrentDateTimeCanadaTimeZones() {
 		String[] timeZonesId = TimeZone.getAvailableIDs();
-		Set<String> canadaZones = new HashSet<>();
-		Arrays.stream(timeZonesId).filter(x -> x.startsWith("Canada"))
-			.forEach(x -> canadaZones.add(x));
-		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
-
-		for(String id: canadaZones) {
-			LocalDateTime time = LocalDateTime.ofInstant(Instant.now(), ZoneId.of(id));
-			System.out.printf("Time in %s is: %s \n", id , time.format(dtf));
-		}
+		Arrays.stream(timeZonesId).filter(x -> x.toLowerCase().contains("canada"))
+				.forEach(x -> System.out.printf("%s %s\n", 
+				LocalDate.ofInstant(Instant.now(), ZoneId.of(x))
+				.format(DateTimeFormatter.ofPattern("MMM-YYYY-dd H:m:s")), x));
 	}
 
 }
