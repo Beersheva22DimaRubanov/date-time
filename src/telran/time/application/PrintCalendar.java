@@ -1,15 +1,12 @@
 package telran.time.application;
 
-import java.lang.reflect.UndeclaredThrowableException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
-import java.time.temporal.WeekFields;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.stream.IntStream;
 
 public class PrintCalendar {
 
